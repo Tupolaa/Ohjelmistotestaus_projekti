@@ -28,4 +28,15 @@ Landing pages
         Run Keyword If    ${response.status_code} == 200    Log    Page ${page} exists  
     END
 
+
+*** Test Cases ***
+Ps5 Testit
+    Click Element    id:searchinput
+    Input Text    id:searchinput    ps5
+    Press Key    id:searchinput    ENTER  
+
+    Sleep    5
     Close Browser
+
+
+    

@@ -1,0 +1,5 @@
+1. Ota tuotteen tietoja ylös (Nimi, Hinta)
+2. Tarkista saatavuus / Löytyykö varastosta (text-success - vihreä, text-warning - keltainen, text-danger - punainen)
+3. Tarkista, että ostoskorista löytyy tuote
+4. Tarkista, että tuote on oikea
+5. Etsi ja klikkaa "Siirry kassalle"

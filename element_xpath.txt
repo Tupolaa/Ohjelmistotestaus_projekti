@@ -1,0 +1,19 @@
+##Product Name
+/html/body/main/div[2]/div/div[2]/div[5]/div/div[1]/product-box/div[2]/div[2]/h5
+
+## First Product image
+<img class="img-fluid mx-auto d-block ls-is-cached lazyloaded" width="400" height="400" data-bind="attr: {'data-src': ImageBaseSrc + ImageID + '-ig400gg.jpg', alt: VendorName + ' ' + Name, title: VendorName + ' ' + Name}" src="//ic.jimms.fi/product/8/0/478789-ig400gg.jpg" data-src="//ic.jimms.fi/product/8/0/478789-ig400gg.jpg" alt="Sony PS5 DualSense Midnight Black, langaton peliohjain" title="Sony PS5 DualSense Midnight Black, langaton peliohjain">
+
+/html/body/main/div[2]/div/div[2]/div[5]/div/div[1]/product-box/div[2]/div[1]/a/div/img
+
+## LISÄÄ KORIIN
+<a class="btn btn-lg btn-success border-2 btn-icon" href="/fi/ShoppingCart/AddItem?ProductID=199044&amp;Qty=1&amp;ProductGuid=34d40444-9b5b-4f14-acf6-d78df302f9ff" rel="nofollow" title="Lisää koriin" data-bind="click: function() { $root.ShoppingCart.AddItem(199044, 1, false, '34d40444-9b5b-4f14-acf6-d78df302f9ff'); }" data-videoly-label="buy" data-videoly-label-index="0">
+                                    <span class="material-icon me-1">add_shopping_cart</span>
+                                    Lisää koriin
+                                </a>
+
+## SIIRRY OSTOSKORIIN
+<a role="button" class="btn btn-success d-block btn-lg" href="/fi/CheckOut/CartOK" data-bind="css: { disabled:  ShoppingCart.ItemError() }, attr: { 'aria-disabled': ShoppingCart.ItemError()}" data-qa="cart-go-to-checkout">Siirry kassalle &gt;&gt;</a>
+
+## SSIIRRY KASSALLE
+/html/body/main/div/div/div/div[2]/div/div[3]/a

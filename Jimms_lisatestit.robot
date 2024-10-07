@@ -14,7 +14,7 @@ ${BASE_URL}    https://www.jimms.fi/fi/Product
 ...    /Verkkotuotteet    /Tarvikkeet    /Erikoistuotteet    /Ohjelmistot    /Palvelut    /Kampanjat
 
 *** Test Cases ***
-Check Landing pages
+Tarkista löytyykö sivut
      open Browser    https://www.jimms.fi   Chrome
      ...    options=add_argument("disable-search-engine-choise-screen"); add_experimental_option("detach", True)
 
@@ -31,7 +31,7 @@ Check Landing pages
 
 
 *** Test Cases ***
-Search ps5
+Hae hakukoneella ps5
     Click Element    id:searchinput
     Input Text    id:searchinput    ps5
     Press Keys    id:searchinput    ENTER  
@@ -39,27 +39,69 @@ Search ps5
     Sleep    3
     
 *** Test Cases ***
-Take Screenshot of Product
+Kuvakaappaa tuotekuva
     Set Screenshot Directory    C:\\Users\\OMISTAJA\\Documents\\HAMK\\Ohjelmistotestaus\\Project\\Screenshots
     Capture Element Screenshot    xpath:/html/body/main/div[2]/div/div[2]/div[5]/div/div[1]/product-box/div[2]/div[1]/a/div/img
 
+
+#LISÄTESTI 1
 *** Test Cases ***
-Go to Product Page
+Hae tuotteen Nimi ja Hinta
+    ${productName}    Get Text    xpath:/html/body/main/div[2]/div/div[2]/div[5]/div/div[1]/product-box/div[2]/div[2]/h5
+    Set Global Variable    ${productName}
+    Log To Console    ${productName}
+
+    ${productPrice}    Get Text    xpath:/html/body/main/div[2]/div/div[2]/div[5]/div/div[1]/product-box/div[2]/div[3]/div/span/span
+    Set Global Variable    ${productPrice}
+    Log To Console    ${productPrice}
+
+
+# LISÄTESTI 2
+*** Test Cases ***
+Tarkista tuotteen saatavuus
+    ${productAvailability}    Get Text    xpath:/html/body/main/div[2]/div/div[2]/div[5]/div/div[1]/product-box/div[2]/div[3]/availability-product/span
+    Set Global Variable    ${productAvailability}
+    Log To Console    ${productAvailability}
+
+
+*** Test Cases ***
+Mene tuotesivulle
     Click Element    xpath:/html/body/main/div[2]/div/div[2]/div[5]/div/div[1]/product-box/div[2]/div[1]/a/div/img
 
     Page Should Contain    PS5
 
 
 *** Test Cases ***
-Find Lisää Koriin
+Etsi 'Lisää Koriin'
     Page Should Contain Link    xpath://a[@title='Lisää koriin']
 
 
 *** Test Cases ***
-Screenshot Lisää Koriin
+Kuvakaappaa 'Lisää Koriin'
     Capture Element Screenshot    xpath://a[@title='Lisää koriin']
 
 *** Test Cases ***
-Add Product to basket
+Klikkaa 'Lisää koriin'
     Click Link    xpath://a[@title='Lisää koriin']
+    
+
+# LISÄTESTI 3
+*** Test Cases ***
+Etsi ostoskori
+    Page Should Contain Link    xpath:/html/body/header/div/div[3]/jim-cart-dropdown/div/a
+
+# LISÄTESTI 4
+*** Test Cases ***
+Siirry ostoskoriin
+    Click Link    xpath:/html/body/header/div/div[3]/jim-cart-dropdown/div/a
+
+# LISÄTESTI 5
+*** Test Cases ***
+Tarkista onko oikea sivu ja löytyykö korista oikea tuote
+    Page Should Contain    Siirry kassalle
+    Page Should Contain    ${productName}
+
+*** Test Cases ***
+Siirry kassalle
+    Click Link    xpath:/html/body/main/div/div/div/div[2]/div/div[3]/a
     

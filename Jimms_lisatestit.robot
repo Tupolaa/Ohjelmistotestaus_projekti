@@ -24,7 +24,7 @@ Tarkista löytyykö sivut
     
     Create Session    website    ${BASE_URL}
     FOR    ${page}    IN    @{PAGES}
-        ${response}=    GET On Session    website    ${page}
+        ${response}=    GET Request    website    ${page}
         Run Keyword If    ${response.status_code} != 200    Log    ERROR: Page ${page} not found! Status code: ${response.status_code}    level=ERROR
         Run Keyword If    ${response.status_code} == 200    Log    Page ${page} exists  
     END
@@ -51,10 +51,36 @@ Hae tuotteen Nimi ja Hinta
     Set Global Variable    ${productName}
     Log To Console    ${productName}
 
-    ${productPrice}    Get Text    xpath:/html/body/main/div[2]/div/div[2]/div[5]/div/div[1]/product-box/div[2]/div[3]/div/span/span
-    Set Global Variable    ${productPrice}
-    Log To Console    ${productPrice}
+    
+    @{Product_price_list}=    Create List
+    ${Productprice}    Get Text    xpath:/html/body/main/div[2]/div/div[2]/div[5]/div/div[1]/product-box/div[2]/div[3]/div/span/span
+    ${Productprice1}    Get Text    xpath:/html/body/main/div[2]/div/div[2]/div[5]/div/div[3]/product-box/div[2]/div[3]/div/span/span
+    
+    Log    ${Productprice}
+    Log    ${Productprice1}
+    
+    ${price}=    Split String    ${Productprice}    €
+    ${price1}=    Split String    ${Productprice1}    €    
 
+
+    Log    ${price}[0]
+    Log    ${price1}[0]
+
+    
+    ${newPrice}=    Set Variable    ${price}[0]
+    ${newPrice2}=    Set Variable    ${price1}[0]
+
+
+    ${newPrice}=    Replace String    ${newPrice}    ,    .
+    ${newPrice2}=    Replace String    ${newPrice2}    ,    .
+
+    ${newPrice}=    Convert To Number    ${newPrice}
+    ${newPrice2}=    Convert To Number    ${newPrice2}
+
+    Append To List    ${Product_price_list}    ${newPrice}
+    Append To List    ${Product_price_list}    ${newPrice2}
+
+    Log To Console    ${Product_price_list}
 
 # LISÄTESTI 2
 *** Test Cases ***
@@ -87,21 +113,17 @@ Klikkaa 'Lisää koriin'
 
 # LISÄTESTI 3
 *** Test Cases ***
-Etsi ostoskori
+Etsi ja siirry ostoskoriin. Tarkista ostoskori. Siirry kassalle
     Page Should Contain Link    xpath:/html/body/header/div/div[3]/jim-cart-dropdown/div/a
 
-# LISÄTESTI 4
-*** Test Cases ***
-Siirry ostoskoriin
     Click Link    xpath:/html/body/header/div/div[3]/jim-cart-dropdown/div/a
 
-# LISÄTESTI 5
-*** Test Cases ***
-Tarkista onko oikea sivu ja löytyykö korista oikea tuote
+    Sleep    3
+
     Page Should Contain    Siirry kassalle
     Page Should Contain    ${productName}
 
-*** Test Cases ***
-Siirry kassalle
     Click Link    xpath:/html/body/main/div/div/div/div[2]/div/div[3]/a
-    
+
+    Sleep    2
+    Close Browser

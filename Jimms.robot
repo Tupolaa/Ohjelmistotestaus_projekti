@@ -118,10 +118,6 @@ Tuotteiden lisäys ostoskoriin
         
         # Haetaan hinta XPath:n avulla
         ${price}=    Get Text    xpath:/html/body/main/div/div/div/div[1]/article[${Real_Index}]/div/div[2]/div/div[3]/div[2]/div/span/span
-        
-        # Puhdistetaan hinta merkkijonona
-        # ${cleaned_price}=    Replace String    ${price}    €    ""   # Poistaa euro-symbolin
-        # ${cleaned_price}=    Replace String    ${cleaned_price}    " "    ""   # Poistaa ylimääräiset välilyönnit
 
         # Verrataan hintaa listan arvoon
         Log    Hinta sivulla: ${price}

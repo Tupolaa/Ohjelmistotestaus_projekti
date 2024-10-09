@@ -4,6 +4,7 @@ Library    String
 Library    OperatingSystem
 Library    Collections
 Library    RequestsLibrary
+Library    XML
 
 *** Keywords ***
 
@@ -109,10 +110,25 @@ Tuotteiden lisäys ostoskoriin
     Click Link    xpath:/html/body/header/div/div[3]/jim-cart-dropdown/div/a
 
     Sleep    3
+# TESTICASE
+     ${length}=    Get Length    ${price_List}  # Hae listan pituus
 
+    FOR    ${index}    IN RANGE    ${length}
+        ${Real_Index}=    Set Variable    ${index + 1}
+        
+        # Haetaan hinta XPath:n avulla
+        ${price}=    Get Text    xpath:/html/body/main/div/div/div/div[1]/article[${Real_Index}]/div/div[2]/div/div[3]/div[2]/div/span/span
+        
+        # Puhdistetaan hinta merkkijonona
+        # ${cleaned_price}=    Replace String    ${price}    €    ""   # Poistaa euro-symbolin
+        # ${cleaned_price}=    Replace String    ${cleaned_price}    " "    ""   # Poistaa ylimääräiset välilyönnit
 
-*** Test Cases ***
-Hinnan tarkistus
+        # Verrataan hintaa listan arvoon
+        Log    Hinta sivulla: ${price}
+        Log    Hinta listassa: ${price_List[${index}]}
 
-    element should be eq
+        Should Be Equal As Strings    ${price}    ${price_List[${index}]}
+        Log    Hinta sivulla: ${price} vastaa listan hintaa: ${price_List[${index}]}
+    END
 
+    Close Browser

@@ -69,7 +69,7 @@ Add Product to basket
 
 
 *** Test Cases ***
-testicase
+Tuotteiden lisäys ostoskoriin
     @{productNames}=    Create List    # Alustetaan tyhjä lista
 
     Open Browser    https://www.jimms.fi/fi/Product/Search?q=ps5   Chrome
@@ -77,18 +77,14 @@ testicase
 
      Maximize Browser Window
 
-
+    @{price_List}=    Create List
     FOR    ${index}    IN RANGE    ${NUMBER_OF_PRODUCTS}
     ${Real_Index}=    Set Variable    ${index + 1}
-    
-    # Yritetään odottaa elementin löytymistä ja tallennetaan tulos muuttujaan
-    ${result}=    Run Keyword And Ignore Error    Wait Until Page Contains Element    xpath:/html/body/main/div[2]/div/div[2]/div[5]/div/div[${Real_Index}]    timeout=10s
-    
-    # Jos ensimmäinen arvo (tulos) on FAIL, vieritetään 300 pikseliä alas
-    Run Keyword If    '${result[0]}' == 'FAIL'    Execute JavaScript    window.scrollBy(0, 300)
+    ${Scroll_index}=    Set Variable    ${Real_Index + 1}
+    Scroll Element Into View    xpath:/html/body/main/div[2]/div/div[2]/div[5]/div/div[${Scroll_index}]
     
     # Uudelleenhaku vierityksen jälkeen
-    Wait Until Page Contains Element    xpath:/html/body/main/div[2]/div/div[2]/div[5]/div/div[${Real_Index}]    timeout=10s
+    Wait Until Page Contains Element    xpath:/html/body/main/div[2]/div/div[2]/div[5]/div/div[${Scroll_index}]    timeout=10s
     
     # Haetaan tuotteen nimi
     ${productName}=    Get Text    xpath:/html/body/main/div[2]/div/div[2]/div[5]/div/div[${Real_Index}]/product-box/div[2]/div[2]/h5
@@ -97,16 +93,14 @@ testicase
     # Haetaan hinta
     ${price}=    Get Text    xpath:/html/body/main/div[2]/div/div[2]/div[5]/div/div[${Real_Index}]/product-box/div[2]/div[3]/div/span/span
     Log    ${price}
+    Append To List    ${price_List}    ${price}
     Sleep    5
     # Lisätään tuote koriin
     Page Should Contain Link    xpath:/html/body/main/div[2]/div/div[2]/div[5]/div/div[${Real_Index}]/product-box/div[2]/div[3]/addto-cart-wrapper/div/a
     Click Link    xpath:/html/body/main/div[2]/div/div[2]/div[5]/div/div[${Real_Index}]/product-box/div[2]/div[3]/addto-cart-wrapper/div/a
     END
-
-
-
-    
-
+    Log    ${price_List}
+    Set Global Variable    ${price_List}
     ${is_visible}=    Run Keyword And Return Status    Element Should Be Visible    xpath:/html/body/div[4]/div/div[2]
     Run Keyword If    ${is_visible}    Click Button    xpath:/html/body/div[4]/div/div[2]/div/div[3]/span
 
@@ -117,5 +111,8 @@ testicase
     Sleep    3
 
 
-    Close Browser
-    
+*** Test Cases ***
+Hinnan tarkistus
+
+    element should be eq
+

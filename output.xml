@@ -1,378 +1,458 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<robot generator="Robot 7.1 (Python 3.12.3 on win32)" generated="2024-10-09T10:57:46.339073" rpa="false" schemaversion="5">
-<suite id="s1" name="Jimms" source="c:\Users\OMISTAJA\Documents\GitHub\Ohjelmistotestaus_projekti\Jimms.robot">
-<test id="s1-t1" name="Tuotteiden lisäys ostoskoriin" line="72">
+<robot generator="Robot 7.1 (Python 3.12.3 on win32)" generated="2024-10-09T11:10:18.282589" rpa="false" schemaversion="5">
+<suite id="s1" name="Jimms lisatestit" source="c:\Users\OMISTAJA\Documents\GitHub\Ohjelmistotestaus_projekti\Jimms_lisatestit.robot">
+<test id="s1-t1" name="Tuotteiden lisäys ostoskoriin" line="135">
 <kw name="Create List" owner="BuiltIn">
-<msg time="2024-10-09T10:57:48.739163" level="INFO">@{productNames} = [ ]</msg>
+<msg time="2024-10-09T11:10:20.070270" level="INFO">@{productNames} = [ ]</msg>
 <var>@{productNames}</var>
 <doc>Returns a list containing given items.</doc>
-<status status="PASS" start="2024-10-09T10:57:48.738158" elapsed="0.006004"/>
+<status status="PASS" start="2024-10-09T11:10:20.069270" elapsed="0.005000"/>
 </kw>
 <kw name="Open Browser" owner="SeleniumLibrary">
-<msg time="2024-10-09T10:57:48.748165" level="INFO">Opening browser 'Chrome' to base url 'https://www.jimms.fi/fi/Product/Search?q=ps5'.</msg>
+<msg time="2024-10-09T11:10:20.112740" level="INFO">Opening browser 'Chrome' to base url 'https://www.jimms.fi/fi/Product/Search?q=ps5'.</msg>
 <arg>https://www.jimms.fi/fi/Product/Search?q=ps5</arg>
 <arg>Chrome</arg>
 <arg>options=add_argument("disable-search-engine-choise-screen"); add_experimental_option("detach", True)</arg>
 <doc>Opens a new browser instance to the optional ``url``.</doc>
-<status status="PASS" start="2024-10-09T10:57:48.745164" elapsed="6.085241"/>
+<status status="PASS" start="2024-10-09T11:10:20.111752" elapsed="6.144378"/>
 </kw>
 <kw name="Maximize Browser Window" owner="SeleniumLibrary">
 <doc>Maximizes current browser window.</doc>
-<status status="PASS" start="2024-10-09T10:57:54.833405" elapsed="0.440042"/>
+<status status="PASS" start="2024-10-09T11:10:26.264129" elapsed="0.700071"/>
 </kw>
 <kw name="Create List" owner="BuiltIn">
-<msg time="2024-10-09T10:57:55.284420" level="INFO">@{price_List} = [ ]</msg>
+<msg time="2024-10-09T11:10:26.976204" level="INFO">@{price_List} = [ ]</msg>
 <var>@{price_List}</var>
 <doc>Returns a list containing given items.</doc>
-<status status="PASS" start="2024-10-09T10:57:55.284420" elapsed="0.001001"/>
+<status status="PASS" start="2024-10-09T11:10:26.975276" elapsed="0.001926"/>
 </kw>
 <for flavor="IN RANGE">
 <iter>
 <kw name="Set Variable" owner="BuiltIn">
-<msg time="2024-10-09T10:57:55.325420" level="INFO">${Real_Index} = 1</msg>
+<msg time="2024-10-09T11:10:26.995202" level="INFO">${Real_Index} = 1</msg>
 <var>${Real_Index}</var>
 <arg>${index + 1}</arg>
 <doc>Returns the given values which can then be assigned to a variables.</doc>
-<status status="PASS" start="2024-10-09T10:57:55.323419" elapsed="0.006034"/>
+<status status="PASS" start="2024-10-09T11:10:26.993199" elapsed="0.002003"/>
 </kw>
 <kw name="Set Variable" owner="BuiltIn">
-<msg time="2024-10-09T10:57:55.332418" level="INFO">${Scroll_index} = 2</msg>
+<msg time="2024-10-09T11:10:26.998202" level="INFO">${Scroll_index} = 2</msg>
 <var>${Scroll_index}</var>
 <arg>${Real_Index + 1}</arg>
 <doc>Returns the given values which can then be assigned to a variables.</doc>
-<status status="PASS" start="2024-10-09T10:57:55.330420" elapsed="0.003001"/>
+<status status="PASS" start="2024-10-09T11:10:26.996202" elapsed="0.002000"/>
 </kw>
 <kw name="Scroll Element Into View" owner="SeleniumLibrary">
 <arg>xpath:/html/body/main/div[2]/div/div[2]/div[5]/div/div[${Scroll_index}]</arg>
 <doc>Scrolls the element identified by ``locator`` into view.</doc>
-<status status="PASS" start="2024-10-09T10:57:55.333421" elapsed="0.473999"/>
+<status status="PASS" start="2024-10-09T11:10:26.999202" elapsed="0.750244"/>
 </kw>
 <kw name="Wait Until Page Contains Element" owner="SeleniumLibrary">
 <arg>xpath:/html/body/main/div[2]/div/div[2]/div[5]/div/div[${Scroll_index}]</arg>
 <arg>timeout=10s</arg>
 <doc>Waits until the element ``locator`` appears on the current page.</doc>
-<status status="PASS" start="2024-10-09T10:57:55.808421" elapsed="0.031000"/>
+<status status="PASS" start="2024-10-09T11:10:27.750462" elapsed="0.027998"/>
 </kw>
 <kw name="Get Text" owner="SeleniumLibrary">
-<msg time="2024-10-09T10:57:55.915424" level="INFO">${productName} = Sony PS5 DualSense Midnight Black, langaton peliohjain</msg>
+<msg time="2024-10-09T11:10:27.833460" level="INFO">${productName} = Sony PS5 DualSense Midnight Black, langaton peliohjain</msg>
 <var>${productName}</var>
 <arg>xpath:/html/body/main/div[2]/div/div[2]/div[5]/div/div[${Real_Index}]/product-box/div[2]/div[2]/h5</arg>
 <doc>Returns the text value of the element identified by ``locator``.</doc>
-<status status="PASS" start="2024-10-09T10:57:55.839421" elapsed="0.076003"/>
+<status status="PASS" start="2024-10-09T11:10:27.779459" elapsed="0.054001"/>
 </kw>
 <kw name="Log" owner="BuiltIn">
-<msg time="2024-10-09T10:57:55.917422" level="INFO">Sony PS5 DualSense Midnight Black, langaton peliohjain</msg>
+<msg time="2024-10-09T11:10:27.835460" level="INFO">Sony PS5 DualSense Midnight Black, langaton peliohjain</msg>
 <arg>${productName}</arg>
 <doc>Logs the given message with the given level.</doc>
-<status status="PASS" start="2024-10-09T10:57:55.916422" elapsed="0.001000"/>
+<status status="PASS" start="2024-10-09T11:10:27.834463" elapsed="0.000997"/>
 </kw>
 <kw name="Get Text" owner="SeleniumLibrary">
-<msg time="2024-10-09T10:57:56.014419" level="INFO">${price} = 67,90 €</msg>
+<msg time="2024-10-09T11:10:27.891460" level="INFO">${price} = 67,90 €</msg>
 <var>${price}</var>
 <arg>xpath:/html/body/main/div[2]/div/div[2]/div[5]/div/div[${Real_Index}]/product-box/div[2]/div[3]/div/span/span</arg>
 <doc>Returns the text value of the element identified by ``locator``.</doc>
-<status status="PASS" start="2024-10-09T10:57:55.918420" elapsed="0.097000"/>
+<status status="PASS" start="2024-10-09T11:10:27.836460" elapsed="0.055999"/>
 </kw>
 <kw name="Log" owner="BuiltIn">
-<msg time="2024-10-09T10:57:56.016419" level="INFO">67,90 €</msg>
+<msg time="2024-10-09T11:10:27.893459" level="INFO">67,90 €</msg>
 <arg>${price}</arg>
 <doc>Logs the given message with the given level.</doc>
-<status status="PASS" start="2024-10-09T10:57:56.015420" elapsed="0.000999"/>
+<status status="PASS" start="2024-10-09T11:10:27.892459" elapsed="0.001000"/>
 </kw>
 <kw name="Append To List" owner="Collections">
 <arg>${price_List}</arg>
 <arg>${price}</arg>
 <doc>Adds ``values`` to the end of ``list``.</doc>
-<status status="PASS" start="2024-10-09T10:57:56.017422" elapsed="0.000000"/>
+<status status="PASS" start="2024-10-09T11:10:27.893459" elapsed="0.001002"/>
 </kw>
 <kw name="Sleep" owner="BuiltIn">
-<msg time="2024-10-09T10:58:01.018621" level="INFO">Slept 5 seconds.</msg>
+<msg time="2024-10-09T11:10:32.897220" level="INFO">Slept 5 seconds.</msg>
 <arg>5</arg>
 <doc>Pauses the test executed for the given time.</doc>
-<status status="PASS" start="2024-10-09T10:57:56.018422" elapsed="5.000199"/>
+<status status="PASS" start="2024-10-09T11:10:27.895461" elapsed="5.002735"/>
 </kw>
 <kw name="Page Should Contain Link" owner="SeleniumLibrary">
-<msg time="2024-10-09T10:58:01.092635" level="INFO">Current page contains link 'xpath:/html/body/main/div[2]/div/div[2]/div[5]/div/div[1]/product-box/div[2]/div[3]/addto-cart-wrapper/div/a'.</msg>
+<msg time="2024-10-09T11:10:32.951188" level="INFO">Current page contains link 'xpath:/html/body/main/div[2]/div/div[2]/div[5]/div/div[1]/product-box/div[2]/div[3]/addto-cart-wrapper/div/a'.</msg>
 <arg>xpath:/html/body/main/div[2]/div/div[2]/div[5]/div/div[${Real_Index}]/product-box/div[2]/div[3]/addto-cart-wrapper/div/a</arg>
 <doc>Verifies link identified by ``locator`` is found from current page.</doc>
-<status status="PASS" start="2024-10-09T10:58:01.019637" elapsed="0.072998"/>
+<status status="PASS" start="2024-10-09T11:10:32.899197" elapsed="0.053028"/>
 </kw>
 <kw name="Click Link" owner="SeleniumLibrary">
-<msg time="2024-10-09T10:58:01.094635" level="INFO">Clicking link 'xpath:/html/body/main/div[2]/div/div[2]/div[5]/div/div[1]/product-box/div[2]/div[3]/addto-cart-wrapper/div/a'.</msg>
+<msg time="2024-10-09T11:10:32.953193" level="INFO">Clicking link 'xpath:/html/body/main/div[2]/div/div[2]/div[5]/div/div[1]/product-box/div[2]/div[3]/addto-cart-wrapper/div/a'.</msg>
 <arg>xpath:/html/body/main/div[2]/div/div[2]/div[5]/div/div[${Real_Index}]/product-box/div[2]/div[3]/addto-cart-wrapper/div/a</arg>
 <doc>Clicks a link identified by ``locator``.</doc>
-<status status="PASS" start="2024-10-09T10:58:01.093634" elapsed="0.471529"/>
+<status status="PASS" start="2024-10-09T11:10:32.952225" elapsed="0.154966"/>
 </kw>
 <var name="${index}">0</var>
-<status status="PASS" start="2024-10-09T10:57:55.323419" elapsed="6.241744"/>
+<status status="PASS" start="2024-10-09T11:10:26.992201" elapsed="6.114990"/>
 </iter>
 <iter>
 <kw name="Set Variable" owner="BuiltIn">
-<msg time="2024-10-09T10:58:01.569165" level="INFO">${Real_Index} = 2</msg>
+<msg time="2024-10-09T11:10:33.110190" level="INFO">${Real_Index} = 2</msg>
 <var>${Real_Index}</var>
 <arg>${index + 1}</arg>
 <doc>Returns the given values which can then be assigned to a variables.</doc>
-<status status="PASS" start="2024-10-09T10:58:01.567164" elapsed="0.004000"/>
+<status status="PASS" start="2024-10-09T11:10:33.108190" elapsed="0.002000"/>
 </kw>
 <kw name="Set Variable" owner="BuiltIn">
-<msg time="2024-10-09T10:58:01.577164" level="INFO">${Scroll_index} = 3</msg>
+<msg time="2024-10-09T11:10:33.114189" level="INFO">${Scroll_index} = 3</msg>
 <var>${Scroll_index}</var>
 <arg>${Real_Index + 1}</arg>
 <doc>Returns the given values which can then be assigned to a variables.</doc>
-<status status="PASS" start="2024-10-09T10:58:01.574166" elapsed="0.002998"/>
+<status status="PASS" start="2024-10-09T11:10:33.111193" elapsed="0.003998"/>
 </kw>
 <kw name="Scroll Element Into View" owner="SeleniumLibrary">
 <arg>xpath:/html/body/main/div[2]/div/div[2]/div[5]/div/div[${Scroll_index}]</arg>
 <doc>Scrolls the element identified by ``locator`` into view.</doc>
-<status status="PASS" start="2024-10-09T10:58:01.578164" elapsed="0.573414"/>
+<status status="PASS" start="2024-10-09T11:10:33.115191" elapsed="0.715000"/>
 </kw>
 <kw name="Wait Until Page Contains Element" owner="SeleniumLibrary">
 <arg>xpath:/html/body/main/div[2]/div/div[2]/div[5]/div/div[${Scroll_index}]</arg>
 <arg>timeout=10s</arg>
 <doc>Waits until the element ``locator`` appears on the current page.</doc>
-<status status="PASS" start="2024-10-09T10:58:02.154578" elapsed="0.129371"/>
+<status status="PASS" start="2024-10-09T11:10:33.831187" elapsed="0.151055"/>
 </kw>
 <kw name="Get Text" owner="SeleniumLibrary">
-<msg time="2024-10-09T10:58:02.367314" level="INFO">${productName} = Sony PS5 DualSense White, langaton peliohjain, valkoinen/musta</msg>
+<msg time="2024-10-09T11:10:34.199761" level="INFO">${productName} = Sony PS5 DualSense White, langaton peliohjain, valkoinen/musta</msg>
 <var>${productName}</var>
 <arg>xpath:/html/body/main/div[2]/div/div[2]/div[5]/div/div[${Real_Index}]/product-box/div[2]/div[2]/h5</arg>
 <doc>Returns the text value of the element identified by ``locator``.</doc>
-<status status="PASS" start="2024-10-09T10:58:02.284940" elapsed="0.082374"/>
+<status status="PASS" start="2024-10-09T11:10:33.983245" elapsed="0.217522"/>
 </kw>
 <kw name="Log" owner="BuiltIn">
-<msg time="2024-10-09T10:58:02.369315" level="INFO">Sony PS5 DualSense White, langaton peliohjain, valkoinen/musta</msg>
+<msg time="2024-10-09T11:10:34.201767" level="INFO">Sony PS5 DualSense White, langaton peliohjain, valkoinen/musta</msg>
 <arg>${productName}</arg>
 <doc>Logs the given message with the given level.</doc>
-<status status="PASS" start="2024-10-09T10:58:02.368313" elapsed="0.001002"/>
+<status status="PASS" start="2024-10-09T11:10:34.201767" elapsed="0.000997"/>
 </kw>
 <kw name="Get Text" owner="SeleniumLibrary">
-<msg time="2024-10-09T10:58:02.414405" level="INFO">${price} = 68,90 €</msg>
+<msg time="2024-10-09T11:10:34.766764" level="INFO">${price} = 68,90 €</msg>
 <var>${price}</var>
 <arg>xpath:/html/body/main/div[2]/div/div[2]/div[5]/div/div[${Real_Index}]/product-box/div[2]/div[3]/div/span/span</arg>
 <doc>Returns the text value of the element identified by ``locator``.</doc>
-<status status="PASS" start="2024-10-09T10:58:02.370313" elapsed="0.045094"/>
+<status status="PASS" start="2024-10-09T11:10:34.202764" elapsed="0.565003"/>
 </kw>
 <kw name="Log" owner="BuiltIn">
-<msg time="2024-10-09T10:58:02.416406" level="INFO">68,90 €</msg>
+<msg time="2024-10-09T11:10:34.768765" level="INFO">68,90 €</msg>
 <arg>${price}</arg>
 <doc>Logs the given message with the given level.</doc>
-<status status="PASS" start="2024-10-09T10:58:02.415407" elapsed="0.000999"/>
+<status status="PASS" start="2024-10-09T11:10:34.768765" elapsed="0.001002"/>
 </kw>
 <kw name="Append To List" owner="Collections">
 <arg>${price_List}</arg>
 <arg>${price}</arg>
 <doc>Adds ``values`` to the end of ``list``.</doc>
-<status status="PASS" start="2024-10-09T10:58:02.417404" elapsed="0.001001"/>
+<status status="PASS" start="2024-10-09T11:10:34.770764" elapsed="0.000000"/>
 </kw>
 <kw name="Sleep" owner="BuiltIn">
-<msg time="2024-10-09T10:58:07.420732" level="INFO">Slept 5 seconds.</msg>
+<msg time="2024-10-09T11:10:39.773629" level="INFO">Slept 5 seconds.</msg>
 <arg>5</arg>
 <doc>Pauses the test executed for the given time.</doc>
-<status status="PASS" start="2024-10-09T10:58:02.419407" elapsed="5.002141"/>
+<status status="PASS" start="2024-10-09T11:10:34.771763" elapsed="5.001866"/>
 </kw>
 <kw name="Page Should Contain Link" owner="SeleniumLibrary">
-<msg time="2024-10-09T10:58:07.462545" level="INFO">Current page contains link 'xpath:/html/body/main/div[2]/div/div[2]/div[5]/div/div[2]/product-box/div[2]/div[3]/addto-cart-wrapper/div/a'.</msg>
+<msg time="2024-10-09T11:10:39.816629" level="INFO">Current page contains link 'xpath:/html/body/main/div[2]/div/div[2]/div[5]/div/div[2]/product-box/div[2]/div[3]/addto-cart-wrapper/div/a'.</msg>
 <arg>xpath:/html/body/main/div[2]/div/div[2]/div[5]/div/div[${Real_Index}]/product-box/div[2]/div[3]/addto-cart-wrapper/div/a</arg>
 <doc>Verifies link identified by ``locator`` is found from current page.</doc>
-<status status="PASS" start="2024-10-09T10:58:07.421548" elapsed="0.040997"/>
+<status status="PASS" start="2024-10-09T11:10:39.773629" elapsed="0.044001"/>
 </kw>
 <kw name="Click Link" owner="SeleniumLibrary">
-<msg time="2024-10-09T10:58:07.464547" level="INFO">Clicking link 'xpath:/html/body/main/div[2]/div/div[2]/div[5]/div/div[2]/product-box/div[2]/div[3]/addto-cart-wrapper/div/a'.</msg>
+<msg time="2024-10-09T11:10:39.817630" level="INFO">Clicking link 'xpath:/html/body/main/div[2]/div/div[2]/div[5]/div/div[2]/product-box/div[2]/div[3]/addto-cart-wrapper/div/a'.</msg>
 <arg>xpath:/html/body/main/div[2]/div/div[2]/div[5]/div/div[${Real_Index}]/product-box/div[2]/div[3]/addto-cart-wrapper/div/a</arg>
 <doc>Clicks a link identified by ``locator``.</doc>
-<status status="PASS" start="2024-10-09T10:58:07.463545" elapsed="0.177007"/>
+<status status="PASS" start="2024-10-09T11:10:39.817630" elapsed="0.148002"/>
 </kw>
 <var name="${index}">1</var>
-<status status="PASS" start="2024-10-09T10:58:01.566168" elapsed="6.074384"/>
+<status status="PASS" start="2024-10-09T11:10:33.108190" elapsed="6.858440"/>
 </iter>
 <iter>
 <kw name="Set Variable" owner="BuiltIn">
-<msg time="2024-10-09T10:58:07.644547" level="INFO">${Real_Index} = 3</msg>
+<msg time="2024-10-09T11:10:39.971629" level="INFO">${Real_Index} = 3</msg>
 <var>${Real_Index}</var>
 <arg>${index + 1}</arg>
 <doc>Returns the given values which can then be assigned to a variables.</doc>
-<status status="PASS" start="2024-10-09T10:58:07.642546" elapsed="0.002001"/>
+<status status="PASS" start="2024-10-09T11:10:39.967633" elapsed="0.004998"/>
 </kw>
 <kw name="Set Variable" owner="BuiltIn">
-<msg time="2024-10-09T10:58:07.648608" level="INFO">${Scroll_index} = 4</msg>
+<msg time="2024-10-09T11:10:39.975629" level="INFO">${Scroll_index} = 4</msg>
 <var>${Scroll_index}</var>
 <arg>${Real_Index + 1}</arg>
 <doc>Returns the given values which can then be assigned to a variables.</doc>
-<status status="PASS" start="2024-10-09T10:58:07.645548" elapsed="0.003060"/>
+<status status="PASS" start="2024-10-09T11:10:39.973632" elapsed="0.003007"/>
 </kw>
 <kw name="Scroll Element Into View" owner="SeleniumLibrary">
 <arg>xpath:/html/body/main/div[2]/div/div[2]/div[5]/div/div[${Scroll_index}]</arg>
 <doc>Scrolls the element identified by ``locator`` into view.</doc>
-<status status="PASS" start="2024-10-09T10:58:07.649547" elapsed="0.445789"/>
+<status status="PASS" start="2024-10-09T11:10:39.977631" elapsed="0.339632"/>
 </kw>
 <kw name="Wait Until Page Contains Element" owner="SeleniumLibrary">
 <arg>xpath:/html/body/main/div[2]/div/div[2]/div[5]/div/div[${Scroll_index}]</arg>
 <arg>timeout=10s</arg>
 <doc>Waits until the element ``locator`` appears on the current page.</doc>
-<status status="PASS" start="2024-10-09T10:58:08.096338" elapsed="0.031569"/>
+<status status="PASS" start="2024-10-09T11:10:40.318258" elapsed="0.032157"/>
 </kw>
 <kw name="Get Text" owner="SeleniumLibrary">
-<msg time="2024-10-09T10:58:08.167903" level="INFO">${productName} = Sony PlayStation VR2 + Horizon Call of the Mountain Bundle (PS5)</msg>
+<msg time="2024-10-09T11:10:40.438338" level="INFO">${productName} = Sony PlayStation VR2 + Horizon Call of the Mountain Bundle (PS5)</msg>
 <var>${productName}</var>
 <arg>xpath:/html/body/main/div[2]/div/div[2]/div[5]/div/div[${Real_Index}]/product-box/div[2]/div[2]/h5</arg>
 <doc>Returns the text value of the element identified by ``locator``.</doc>
-<status status="PASS" start="2024-10-09T10:58:08.128905" elapsed="0.038998"/>
+<status status="PASS" start="2024-10-09T11:10:40.351412" elapsed="0.087963"/>
 </kw>
 <kw name="Log" owner="BuiltIn">
-<msg time="2024-10-09T10:58:08.167903" level="INFO">Sony PlayStation VR2 + Horizon Call of the Mountain Bundle (PS5)</msg>
+<msg time="2024-10-09T11:10:40.440910" level="INFO">Sony PlayStation VR2 + Horizon Call of the Mountain Bundle (PS5)</msg>
 <arg>${productName}</arg>
 <doc>Logs the given message with the given level.</doc>
-<status status="PASS" start="2024-10-09T10:58:08.167903" elapsed="0.001001"/>
+<status status="PASS" start="2024-10-09T11:10:40.439889" elapsed="0.001021"/>
 </kw>
 <kw name="Get Text" owner="SeleniumLibrary">
-<msg time="2024-10-09T10:58:08.216904" level="INFO">${price} = 624,90 €</msg>
+<msg time="2024-10-09T11:10:40.520719" level="INFO">${price} = 624,90 €</msg>
 <var>${price}</var>
 <arg>xpath:/html/body/main/div[2]/div/div[2]/div[5]/div/div[${Real_Index}]/product-box/div[2]/div[3]/div/span/span</arg>
 <doc>Returns the text value of the element identified by ``locator``.</doc>
-<status status="PASS" start="2024-10-09T10:58:08.168904" elapsed="0.048000"/>
+<status status="PASS" start="2024-10-09T11:10:40.441654" elapsed="0.080063"/>
 </kw>
 <kw name="Log" owner="BuiltIn">
-<msg time="2024-10-09T10:58:08.217912" level="INFO">624,90 €</msg>
+<msg time="2024-10-09T11:10:40.521717" level="INFO">624,90 €</msg>
 <arg>${price}</arg>
 <doc>Logs the given message with the given level.</doc>
-<status status="PASS" start="2024-10-09T10:58:08.217912" elapsed="0.000000"/>
+<status status="PASS" start="2024-10-09T11:10:40.521717" elapsed="0.000998"/>
 </kw>
 <kw name="Append To List" owner="Collections">
 <arg>${price_List}</arg>
 <arg>${price}</arg>
 <doc>Adds ``values`` to the end of ``list``.</doc>
-<status status="PASS" start="2024-10-09T10:58:08.218901" elapsed="0.000000"/>
+<status status="PASS" start="2024-10-09T11:10:40.522715" elapsed="0.000000"/>
 </kw>
 <kw name="Sleep" owner="BuiltIn">
-<msg time="2024-10-09T10:58:13.219321" level="INFO">Slept 5 seconds.</msg>
+<msg time="2024-10-09T11:10:45.524348" level="INFO">Slept 5 seconds.</msg>
 <arg>5</arg>
 <doc>Pauses the test executed for the given time.</doc>
-<status status="PASS" start="2024-10-09T10:58:08.218901" elapsed="5.000420"/>
+<status status="PASS" start="2024-10-09T11:10:40.523715" elapsed="5.000633"/>
 </kw>
 <kw name="Page Should Contain Link" owner="SeleniumLibrary">
-<msg time="2024-10-09T10:58:13.251359" level="INFO">Current page contains link 'xpath:/html/body/main/div[2]/div/div[2]/div[5]/div/div[3]/product-box/div[2]/div[3]/addto-cart-wrapper/div/a'.</msg>
+<msg time="2024-10-09T11:10:45.560352" level="INFO">Current page contains link 'xpath:/html/body/main/div[2]/div/div[2]/div[5]/div/div[3]/product-box/div[2]/div[3]/addto-cart-wrapper/div/a'.</msg>
 <arg>xpath:/html/body/main/div[2]/div/div[2]/div[5]/div/div[${Real_Index}]/product-box/div[2]/div[3]/addto-cart-wrapper/div/a</arg>
 <doc>Verifies link identified by ``locator`` is found from current page.</doc>
-<status status="PASS" start="2024-10-09T10:58:13.219321" elapsed="0.032038"/>
+<status status="PASS" start="2024-10-09T11:10:45.524348" elapsed="0.037002"/>
 </kw>
 <kw name="Click Link" owner="SeleniumLibrary">
-<msg time="2024-10-09T10:58:13.252358" level="INFO">Clicking link 'xpath:/html/body/main/div[2]/div/div[2]/div[5]/div/div[3]/product-box/div[2]/div[3]/addto-cart-wrapper/div/a'.</msg>
+<msg time="2024-10-09T11:10:45.562352" level="INFO">Clicking link 'xpath:/html/body/main/div[2]/div/div[2]/div[5]/div/div[3]/product-box/div[2]/div[3]/addto-cart-wrapper/div/a'.</msg>
 <arg>xpath:/html/body/main/div[2]/div/div[2]/div[5]/div/div[${Real_Index}]/product-box/div[2]/div[3]/addto-cart-wrapper/div/a</arg>
 <doc>Clicks a link identified by ``locator``.</doc>
-<status status="PASS" start="2024-10-09T10:58:13.251359" elapsed="0.126489"/>
+<status status="PASS" start="2024-10-09T11:10:45.561350" elapsed="0.130003"/>
 </kw>
 <var name="${index}">2</var>
-<status status="PASS" start="2024-10-09T10:58:07.641574" elapsed="5.737274"/>
+<status status="PASS" start="2024-10-09T11:10:39.966630" elapsed="5.724723"/>
 </iter>
 <var>${index}</var>
 <value>${NUMBER_OF_PRODUCTS}</value>
-<status status="PASS" start="2024-10-09T10:57:55.322419" elapsed="18.056429"/>
+<status status="PASS" start="2024-10-09T11:10:26.991200" elapsed="18.701151"/>
 </for>
 <kw name="Log" owner="BuiltIn">
-<msg time="2024-10-09T10:58:13.380848" level="INFO">['67,90 €', '68,90 €', '624,90 €']</msg>
+<msg time="2024-10-09T11:10:45.710350" level="INFO">['67,90 €', '68,90 €', '624,90 €']</msg>
 <arg>${price_List}</arg>
 <doc>Logs the given message with the given level.</doc>
-<status status="PASS" start="2024-10-09T10:58:13.379848" elapsed="0.001000"/>
+<status status="PASS" start="2024-10-09T11:10:45.710350" elapsed="0.001000"/>
 </kw>
 <kw name="Set Global Variable" owner="BuiltIn">
-<msg time="2024-10-09T10:58:13.385848" level="INFO">${price_List} = ['67,90 €', '68,90 €', '624,90 €']</msg>
+<msg time="2024-10-09T11:10:45.722350" level="INFO">${price_List} = ['67,90 €', '68,90 €', '624,90 €']</msg>
 <arg>${price_List}</arg>
 <doc>Makes a variable available globally in all tests and suites.</doc>
-<status status="PASS" start="2024-10-09T10:58:13.384852" elapsed="0.002011"/>
+<status status="PASS" start="2024-10-09T11:10:45.721357" elapsed="0.001993"/>
 </kw>
 <kw name="Run Keyword And Return Status" owner="BuiltIn">
 <kw name="Element Should Be Visible" owner="SeleniumLibrary">
-<msg time="2024-10-09T10:58:13.649849" level="INFO" html="true">&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td colspan="3"&gt;&lt;a href="selenium-screenshot-6.png"&gt;&lt;img src="selenium-screenshot-6.png" width="800px"&gt;&lt;/a&gt;</msg>
-<msg time="2024-10-09T10:58:13.650848" level="FAIL">Element with locator 'xpath:/html/body/div[4]/div/div[2]' not found.</msg>
+<msg time="2024-10-09T11:10:46.096381" level="INFO" html="true">&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td colspan="3"&gt;&lt;a href="selenium-screenshot-9.png"&gt;&lt;img src="selenium-screenshot-9.png" width="800px"&gt;&lt;/a&gt;</msg>
+<msg time="2024-10-09T11:10:46.097360" level="FAIL">Element with locator 'xpath:/html/body/div[4]/div/div[2]' not found.</msg>
 <arg>xpath:/html/body/div[4]/div/div[2]</arg>
 <doc>Verifies that the element identified by ``locator`` is visible.</doc>
-<status status="FAIL" start="2024-10-09T10:58:13.395853" elapsed="0.262995">Element with locator 'xpath:/html/body/div[4]/div/div[2]' not found.</status>
+<status status="FAIL" start="2024-10-09T11:10:45.738349" elapsed="0.366004">Element with locator 'xpath:/html/body/div[4]/div/div[2]' not found.</status>
 </kw>
-<msg time="2024-10-09T10:58:13.658848" level="INFO">${is_visible} = False</msg>
+<msg time="2024-10-09T11:10:46.105353" level="INFO">${is_visible} = False</msg>
 <var>${is_visible}</var>
 <arg>Element Should Be Visible</arg>
 <arg>xpath:/html/body/div[4]/div/div[2]</arg>
 <doc>Runs the given keyword with given arguments and returns the status as a Boolean value.</doc>
-<status status="PASS" start="2024-10-09T10:58:13.394848" elapsed="0.265002"/>
+<status status="PASS" start="2024-10-09T11:10:45.737352" elapsed="0.368001"/>
 </kw>
 <kw name="Run Keyword If" owner="BuiltIn">
 <arg>${is_visible}</arg>
 <arg>Click Button</arg>
 <arg>xpath:/html/body/div[4]/div/div[2]/div/div[3]/span</arg>
 <doc>Runs the given keyword with the given arguments, if ``condition`` is true.</doc>
-<status status="PASS" start="2024-10-09T10:58:13.851849" elapsed="0.002997"/>
+<status status="PASS" start="2024-10-09T11:10:46.112352" elapsed="0.002002"/>
 </kw>
 <kw name="Wait Until Element Is Visible" owner="SeleniumLibrary">
 <arg>xpath:/html/body/header/div/div[3]/jim-cart-dropdown/div/a/span/span</arg>
 <doc>Waits until the element ``locator`` is visible.</doc>
-<status status="PASS" start="2024-10-09T10:58:13.862846" elapsed="0.142000"/>
+<status status="PASS" start="2024-10-09T11:10:46.115351" elapsed="0.071998"/>
 </kw>
 <kw name="Click Link" owner="SeleniumLibrary">
-<msg time="2024-10-09T10:58:14.006850" level="INFO">Clicking link 'xpath:/html/body/header/div/div[3]/jim-cart-dropdown/div/a'.</msg>
+<msg time="2024-10-09T11:10:46.189353" level="INFO">Clicking link 'xpath:/html/body/header/div/div[3]/jim-cart-dropdown/div/a'.</msg>
 <arg>xpath:/html/body/header/div/div[3]/jim-cart-dropdown/div/a</arg>
 <doc>Clicks a link identified by ``locator``.</doc>
-<status status="PASS" start="2024-10-09T10:58:14.006850" elapsed="1.271286"/>
+<status status="PASS" start="2024-10-09T11:10:46.189353" elapsed="1.001002"/>
 </kw>
 <kw name="Sleep" owner="BuiltIn">
-<msg time="2024-10-09T10:58:18.290332" level="INFO">Slept 3 seconds.</msg>
+<msg time="2024-10-09T11:10:50.198795" level="INFO">Slept 3 seconds.</msg>
 <arg>3</arg>
 <doc>Pauses the test executed for the given time.</doc>
-<status status="PASS" start="2024-10-09T10:58:15.286786" elapsed="3.005553"/>
+<status status="PASS" start="2024-10-09T11:10:47.197358" elapsed="3.001437"/>
 </kw>
 <kw name="Log" owner="BuiltIn">
-<msg time="2024-10-09T10:58:18.328329" level="INFO">['67,90 €', '68,90 €', '624,90 €']</msg>
+<msg time="2024-10-09T11:10:50.200822" level="INFO">['67,90 €', '68,90 €', '624,90 €']</msg>
 <arg>${price_List}</arg>
 <doc>Logs the given message with the given level.</doc>
-<status status="PASS" start="2024-10-09T10:58:18.324329" elapsed="0.004999"/>
+<status status="PASS" start="2024-10-09T11:10:50.199797" elapsed="0.001025"/>
+</kw>
+<kw name="Create List" owner="BuiltIn">
+<msg time="2024-10-09T11:10:50.204800" level="INFO">@{new_price_list} = [ ]</msg>
+<var>@{new_price_list}</var>
+<doc>Returns a list containing given items.</doc>
+<status status="PASS" start="2024-10-09T11:10:50.203802" elapsed="0.000998"/>
 </kw>
 <for flavor="IN">
 <iter>
 <kw name="Split String" owner="String">
-<msg time="2024-10-09T10:58:18.339326" level="INFO">${element} = ['67,90 ', '']</msg>
+<msg time="2024-10-09T11:10:50.211803" level="INFO">${element} = ['67,90 ', '']</msg>
 <var>${element}</var>
 <arg>${element}</arg>
 <arg>€</arg>
 <doc>Splits the ``string`` using ``separator`` as a delimiter string.</doc>
-<status status="PASS" start="2024-10-09T10:58:18.338326" elapsed="0.002001"/>
+<status status="PASS" start="2024-10-09T11:10:50.210799" elapsed="0.001004"/>
 </kw>
 <kw name="Replace String" owner="String">
-<msg time="2024-10-09T10:58:18.342327" level="FAIL">AttributeError: 'list' object has no attribute 'replace'</msg>
+<msg time="2024-10-09T11:10:50.214798" level="INFO">${element} = 67.90 </msg>
 <var>${element}</var>
-<arg>${element}</arg>
+<arg>${element[0]}</arg>
 <arg>,</arg>
 <arg>.</arg>
 <doc>Replaces ``search_for`` in the given ``string`` with ``replace_with``.</doc>
-<status status="FAIL" start="2024-10-09T10:58:18.341328" elapsed="0.004996">AttributeError: 'list' object has no attribute 'replace'</status>
+<status status="PASS" start="2024-10-09T11:10:50.212797" elapsed="0.003001"/>
 </kw>
 <kw name="Log" owner="BuiltIn">
+<msg time="2024-10-09T11:10:50.216798" level="INFO">67.90 </msg>
 <arg>${element}</arg>
 <doc>Logs the given message with the given level.</doc>
-<status status="NOT RUN" start="2024-10-09T10:58:18.348324" elapsed="0.000000"/>
+<status status="PASS" start="2024-10-09T11:10:50.216798" elapsed="0.001000"/>
+</kw>
+<kw name="Append To List" owner="Collections">
+<arg>${new_price_list}</arg>
+<arg>${element}</arg>
+<doc>Adds ``values`` to the end of ``list``.</doc>
+<status status="PASS" start="2024-10-09T11:10:50.218801" elapsed="0.001999"/>
 </kw>
 <var name="${element}">67,90 €</var>
-<status status="FAIL" start="2024-10-09T10:58:18.337332" elapsed="0.012995">AttributeError: 'list' object has no attribute 'replace'</status>
+<status status="PASS" start="2024-10-09T11:10:50.209801" elapsed="0.010999"/>
+</iter>
+<iter>
+<kw name="Split String" owner="String">
+<msg time="2024-10-09T11:10:50.222802" level="INFO">${element} = ['68,90 ', '']</msg>
+<var>${element}</var>
+<arg>${element}</arg>
+<arg>€</arg>
+<doc>Splits the ``string`` using ``separator`` as a delimiter string.</doc>
+<status status="PASS" start="2024-10-09T11:10:50.221810" elapsed="0.000992"/>
+</kw>
+<kw name="Replace String" owner="String">
+<msg time="2024-10-09T11:10:50.226799" level="INFO">${element} = 68.90 </msg>
+<var>${element}</var>
+<arg>${element[0]}</arg>
+<arg>,</arg>
+<arg>.</arg>
+<doc>Replaces ``search_for`` in the given ``string`` with ``replace_with``.</doc>
+<status status="PASS" start="2024-10-09T11:10:50.223800" elapsed="0.002999"/>
+</kw>
+<kw name="Log" owner="BuiltIn">
+<msg time="2024-10-09T11:10:50.227802" level="INFO">68.90 </msg>
+<arg>${element}</arg>
+<doc>Logs the given message with the given level.</doc>
+<status status="PASS" start="2024-10-09T11:10:50.227802" elapsed="0.001003"/>
+</kw>
+<kw name="Append To List" owner="Collections">
+<arg>${new_price_list}</arg>
+<arg>${element}</arg>
+<doc>Adds ``values`` to the end of ``list``.</doc>
+<status status="PASS" start="2024-10-09T11:10:50.228805" elapsed="0.001996"/>
+</kw>
+<var name="${element}">68,90 €</var>
+<status status="PASS" start="2024-10-09T11:10:50.221810" elapsed="0.009990"/>
+</iter>
+<iter>
+<kw name="Split String" owner="String">
+<msg time="2024-10-09T11:10:50.232799" level="INFO">${element} = ['624,90 ', '']</msg>
+<var>${element}</var>
+<arg>${element}</arg>
+<arg>€</arg>
+<doc>Splits the ``string`` using ``separator`` as a delimiter string.</doc>
+<status status="PASS" start="2024-10-09T11:10:50.232799" elapsed="0.001000"/>
+</kw>
+<kw name="Replace String" owner="String">
+<msg time="2024-10-09T11:10:50.236801" level="INFO">${element} = 624.90 </msg>
+<var>${element}</var>
+<arg>${element[0]}</arg>
+<arg>,</arg>
+<arg>.</arg>
+<doc>Replaces ``search_for`` in the given ``string`` with ``replace_with``.</doc>
+<status status="PASS" start="2024-10-09T11:10:50.233799" elapsed="0.003002"/>
+</kw>
+<kw name="Log" owner="BuiltIn">
+<msg time="2024-10-09T11:10:50.237801" level="INFO">624.90 </msg>
+<arg>${element}</arg>
+<doc>Logs the given message with the given level.</doc>
+<status status="PASS" start="2024-10-09T11:10:50.236801" elapsed="0.001000"/>
+</kw>
+<kw name="Append To List" owner="Collections">
+<arg>${new_price_list}</arg>
+<arg>${element}</arg>
+<doc>Adds ``values`` to the end of ``list``.</doc>
+<status status="PASS" start="2024-10-09T11:10:50.238800" elapsed="0.001000"/>
+</kw>
+<var name="${element}">624,90 €</var>
+<status status="PASS" start="2024-10-09T11:10:50.231800" elapsed="0.008000"/>
 </iter>
 <var>${element}</var>
 <value>@{price_List}</value>
-<status status="FAIL" start="2024-10-09T10:58:18.333325" elapsed="0.017002">AttributeError: 'list' object has no attribute 'replace'</status>
+<status status="PASS" start="2024-10-09T11:10:50.207800" elapsed="0.032000"/>
 </for>
 <kw name="Log" owner="BuiltIn">
-<arg>${price_List}</arg>
+<msg time="2024-10-09T11:10:50.320799" level="INFO">['67.90 ', '68.90 ', '624.90 ']</msg>
+<arg>${new_price_list}</arg>
 <doc>Logs the given message with the given level.</doc>
-<status status="NOT RUN" start="2024-10-09T10:58:18.597327" elapsed="0.000998"/>
+<status status="PASS" start="2024-10-09T11:10:50.283797" elapsed="0.037002"/>
 </kw>
-<status status="FAIL" start="2024-10-09T10:57:48.736196" elapsed="30.047134">AttributeError: 'list' object has no attribute 'replace'</status>
+<status status="PASS" start="2024-10-09T11:10:20.063656" elapsed="30.409198"/>
 </test>
-<status status="FAIL" start="2024-10-09T10:57:46.352054" elapsed="32.652340"/>
+<status status="PASS" start="2024-10-09T11:10:18.292596" elapsed="32.247254"/>
 </suite>
 <statistics>
 <total>
-<stat pass="0" fail="1" skip="0">All Tests</stat>
+<stat pass="1" fail="0" skip="0">All Tests</stat>
 </total>
 <tag>
 </tag>
 <suite>
-<stat pass="0" fail="1" skip="0" id="s1" name="Jimms">Jimms</stat>
+<stat pass="1" fail="0" skip="0" id="s1" name="Jimms lisatestit">Jimms lisatestit</stat>
 </suite>
 </statistics>
 <errors>

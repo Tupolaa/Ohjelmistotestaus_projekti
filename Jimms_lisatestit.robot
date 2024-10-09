@@ -177,11 +177,12 @@ Tuotteiden lisäys ostoskoriin
 
 #testcase
     Log    ${price_List}
-
+    @{new_price_list}=    Create List
     FOR    ${element}    IN    @{price_List}
         ${element}=    Split String    ${element}    €
-        ${element}=    Replace String    ${element}    ,    .
+        ${element}=    Replace String    ${element[0]}    ,    .
         Log    ${element}
+        Append To List    ${new_price_list}    ${element}
     END
 
-    Log    ${price_List}
+    Log    ${new_price_list}

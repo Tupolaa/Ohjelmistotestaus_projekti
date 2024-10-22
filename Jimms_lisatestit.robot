@@ -118,6 +118,8 @@ Etsi ja siirry ostoskoriin. Tarkista ostoskori. Siirry kassalle
     Page Should Contain    Siirry kassalle
     Page Should Contain    ${productName}
 
+    Sleep    5
+
     Click Link    xpath:/html/body/main/div/div/div/div[2]/div/div[3]/a
 
     Sleep    5

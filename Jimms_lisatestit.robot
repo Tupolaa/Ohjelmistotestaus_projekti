@@ -42,13 +42,14 @@ Hae hakukoneella ps5
     
 *** Test Cases ***
 Kuvakaappaa tuotekuva
-    Set Screenshot Directory    C:\\Users\\OMISTAJA\\Documents\\HAMK\\Ohjelmistotestaus\\Project\\Screenshots
+    Set Screenshot Directory    Screenshots
     Capture Element Screenshot    xpath:/html/body/main/div[2]/div/div[2]/div[5]/div/div[1]/product-box/div[2]/div[1]/a/div/img
 
 
 #LISÄTESTI 1
 *** Test Cases ***
 Hae tuotteen Nimi ja Hinta
+
     ${productName}    Get Text    xpath:/html/body/main/div[2]/div/div[2]/div[5]/div/div[1]/product-box/div[2]/div[2]/h5
     Set Global Variable    ${productName}
     Log To Console    ${productName}
@@ -64,14 +65,11 @@ Hae tuotteen Nimi ja Hinta
     ${price}=    Split String    ${Productprice}    €
     ${price1}=    Split String    ${Productprice1}    €    
 
-
     Log    ${price}[0]
     Log    ${price1}[0]
-
     
     ${newPrice}=    Set Variable    ${price}[0]
     ${newPrice2}=    Set Variable    ${price1}[0]
-
 
     ${newPrice}=    Replace String    ${newPrice}    ,    .
     ${newPrice2}=    Replace String    ${newPrice2}    ,    .
@@ -87,7 +85,7 @@ Hae tuotteen Nimi ja Hinta
 # LISÄTESTI 2
 *** Test Cases ***
 Tarkista tuotteen saatavuus
-    ${productAvailability}    Get Text    xpath:/html/body/main/div[2]/div/div[2]/div[5]/div/div[1]/product-box/div[2]/div[3]/availability-product/span
+    ${productAvailability}    Get Text    xpath:/html/body/main/div[2]/div/div[2]/div[5]/div/div[1]/product-box/div[2]/div[3]/availability-product/span/span
     Set Global Variable    ${productAvailability}
     Log To Console    ${productAvailability}
 
@@ -100,16 +98,11 @@ Mene tuotesivulle
 
 
 *** Test Cases ***
-Etsi 'Lisää Koriin'
+Etsi, Kuvakaappaa ja Klikkaa 'Lisää Koriin'
     Page Should Contain Link    xpath://a[@title='Lisää koriin']
 
+    Capture Element Screenshot    xpath:/html/body/main/div[1]/div[2]/div/jim-product-cta-box/div/div[3]/div[2]/addto-cart-wrapper/div/a/span
 
-*** Test Cases ***
-Kuvakaappaa 'Lisää Koriin'
-    Capture Element Screenshot    xpath://a[@title='Lisää koriin']
-
-*** Test Cases ***
-Klikkaa 'Lisää koriin'
     Click Link    xpath://a[@title='Lisää koriin']
     
 
@@ -131,8 +124,9 @@ Etsi ja siirry ostoskoriin. Tarkista ostoskori. Siirry kassalle
     Close Browser
 
 
+# LISÄTESTI 4
 *** Test Cases ***
-Tuotteiden lisäys ostoskoriin
+Useamman tuotteen lisääminen ostoskoriin
     @{productNames}=    Create List    # Alustetaan tyhjä lista
 
     Open Browser    https://www.jimms.fi/fi/Product/Search?q=ps5   Chrome
@@ -141,6 +135,7 @@ Tuotteiden lisäys ostoskoriin
      Maximize Browser Window
 
     @{price_List}=    Create List
+
     FOR    ${index}    IN RANGE    ${NUMBER_OF_PRODUCTS}
     ${Real_Index}=    Set Variable    ${index + 1}
     ${Scroll_index}=    Set Variable    ${Real_Index + 1}
@@ -161,9 +156,9 @@ Tuotteiden lisäys ostoskoriin
     # Lisätään tuote koriin
     Page Should Contain Link    xpath:/html/body/main/div[2]/div/div[2]/div[5]/div/div[${Real_Index}]/product-box/div[2]/div[3]/addto-cart-wrapper/div/a
     
-    
     Click Link    xpath:/html/body/main/div[2]/div/div[2]/div[5]/div/div[${Real_Index}]/product-box/div[2]/div[3]/addto-cart-wrapper/div/a
     END
+
     Log    ${price_List}
     Set Global Variable    ${price_List}
     ${is_visible}=    Run Keyword And Return Status    Element Should Be Visible    xpath:/html/body/div[4]/div/div[2]
@@ -175,14 +170,33 @@ Tuotteiden lisäys ostoskoriin
 
     Sleep    3
 
-#testcase
+
+# LISÄTESTI 5
+*** Test Cases ***
+Tarkista, että ostoskorin tuotteiden hintojen 'Summa' == 'Yhteensä'
     Log    ${price_List}
     @{new_price_list}=    Create List
+
+    # Poista ylimääräiset merkit hinnoista ja muuta ne numeroiksi
     FOR    ${element}    IN    @{price_List}
         ${element}=    Split String    ${element}    €
         ${element}=    Replace String    ${element[0]}    ,    .
         Log    ${element}
+        ${element}=    Convert To Number    ${element}
         Append To List    ${new_price_list}    ${element}
     END
 
+    # Summaa listan hinnat yhteen
     Log    ${new_price_list}
+    ${totalSum}=    Evaluate    round(sum([float(x) for x in ${new_price_list}]), 2)
+    Log    ${totalSum}
+    
+    #Poista ylimääräiset merkit 'Yhteensä' luvusta ja muuta se numeroksi
+    ${total_Cost}=    Get Text    xpath:/html/body/main/div/div/div/div[2]/div/div[1]/ul/li[5]/span
+    ${total_Cost}=    Split String    ${total_Cost}
+    ${total_Cost}=    Replace String    ${total_Cost}[0]    ,    .
+    ${total_Cost}=    Convert To Number   ${total_Cost}
+    Log    ${total_Cost}
+
+    # Vertaa että 'Summa' ja 'Yhteensä' ovat tasa-arvoiset
+    Should Be Equal    ${totalSum}    ${total_Cost}

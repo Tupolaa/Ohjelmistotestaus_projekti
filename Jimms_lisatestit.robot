@@ -113,14 +113,14 @@ Etsi ja siirry ostoskoriin. Tarkista ostoskori. Siirry kassalle
 
     Click Link    xpath:/html/body/header/div/div[3]/jim-cart-dropdown/div/a
 
-    Sleep    3
+    Sleep    5
 
     Page Should Contain    Siirry kassalle
     Page Should Contain    ${productName}
 
     Click Link    xpath:/html/body/main/div/div/div/div[2]/div/div[3]/a
 
-    Sleep    2
+    Sleep    5
     Close Browser
 
 
@@ -200,3 +200,6 @@ Tarkista, että ostoskorin tuotteiden hintojen 'Summa' == 'Yhteensä'
 
     # Vertaa että 'Summa' ja 'Yhteensä' ovat tasa-arvoiset
     Should Be Equal    ${totalSum}    ${total_Cost}
+
+
+    Close Browser

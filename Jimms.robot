@@ -127,4 +127,26 @@ Tuotteiden lisäys ostoskoriin
         Log    Hinta sivulla: ${price} vastaa listan hintaa: ${price_List[${index}]}
     END
 
+
+    Log    ${price_List}
+    @{new_price_list}=    Create List
+    FOR    ${element}    IN    @{price_List}
+        ${element}=    Split String    ${element}    €
+        ${element}=    Replace String    ${element[0]}    ,    .
+        Log    ${element}
+        Append To List    ${new_price_list}    ${element}
+    END
+
+    Log    ${new_price_list}
+
+
+    FOR    ${price}    IN    @{new_price_list}
+        # Lisätään hinta total-muuttujaan
+        ${total}=    Set Variable    ${total+ ${price}}
+        
+        Log    Current total: ${total}
+    END
+
+    Log    Final total: ${total}
+
     Close Browser

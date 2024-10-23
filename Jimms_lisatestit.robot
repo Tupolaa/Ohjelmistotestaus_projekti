@@ -16,7 +16,7 @@ ${BASE_URL}    https://www.jimms.fi/fi/Product
 ${NUMBER_OF_PRODUCTS}    3 
 
 *** Test Cases ***
-Tarkista löytyykö sivut
+Tarkista löytyykö landing paget
      open Browser    https://www.jimms.fi   Chrome
      ...    options=add_argument("disable-search-engine-choise-screen"); add_experimental_option("detach", True)
 
@@ -52,35 +52,31 @@ Hae tuotteen Nimi ja Hinta
 
     ${productName}    Get Text    xpath:/html/body/main/div[2]/div/div[2]/div[5]/div/div[1]/product-box/div[2]/div[2]/h5
     Set Global Variable    ${productName}
-    Log To Console    ${productName}
+    Log     ${productName}
 
     
     @{Product_price_list}=    Create List
     ${Productprice}    Get Text    xpath:/html/body/main/div[2]/div/div[2]/div[5]/div/div[1]/product-box/div[2]/div[3]/div/span/span
-    ${Productprice1}    Get Text    xpath:/html/body/main/div[2]/div/div[2]/div[5]/div/div[3]/product-box/div[2]/div[3]/div/span/span
+    
     
     Log    ${Productprice}
-    Log    ${Productprice1}
+    
     
     ${price}=    Split String    ${Productprice}    €
-    ${price1}=    Split String    ${Productprice1}    €    
+     
 
     Log    ${price}[0]
-    Log    ${price1}[0]
+    
     
     ${newPrice}=    Set Variable    ${price}[0]
-    ${newPrice2}=    Set Variable    ${price1}[0]
+   
 
     ${newPrice}=    Replace String    ${newPrice}    ,    .
-    ${newPrice2}=    Replace String    ${newPrice2}    ,    .
+    
 
     ${newPrice}=    Convert To Number    ${newPrice}
-    ${newPrice2}=    Convert To Number    ${newPrice2}
-
-    Append To List    ${Product_price_list}    ${newPrice}
-    Append To List    ${Product_price_list}    ${newPrice2}
-
-    Log To Console    ${Product_price_list}
+    
+    Log     ${newPrice}
 
 # LISÄTESTI 2
 *** Test Cases ***
@@ -91,14 +87,11 @@ Tarkista tuotteen saatavuus
 
 
 *** Test Cases ***
-Mene tuotesivulle
+Ota Kuvakaappaus ja klikkaa "lisää koriin"
     Click Element    xpath:/html/body/main/div[2]/div/div[2]/div[5]/div/div[1]/product-box/div[2]/div[1]/a/div/img
 
     Page Should Contain    PS5
-
-
-*** Test Cases ***
-Etsi, Kuvakaappaa ja Klikkaa 'Lisää Koriin'
+    
     Page Should Contain Link    xpath://a[@title='Lisää koriin']
 
     Capture Element Screenshot    xpath:/html/body/main/div[1]/div[2]/div/jim-product-cta-box/div/div[3]/div[2]/addto-cart-wrapper/div/a/span

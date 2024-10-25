@@ -63,17 +63,9 @@ Hae tuotteen Nimi ja Hinta
     
     
     ${price}=    Split String    ${Productprice}    €
-     
-
     Log    ${price}[0]
-    
-    
     ${newPrice}=    Set Variable    ${price}[0]
-   
-
     ${newPrice}=    Replace String    ${newPrice}    ,    .
-    
-
     ${newPrice}=    Convert To Number    ${newPrice}
     
     Log     ${newPrice}
@@ -89,6 +81,7 @@ Tarkista tuotteen saatavuus
 *** Test Cases ***
 Ota Kuvakaappaus ja klikkaa "lisää koriin"
     Click Element    xpath:/html/body/main/div[2]/div/div[2]/div[5]/div/div[1]/product-box/div[2]/div[1]/a/div/img
+    
 
     Page Should Contain    PS5
     

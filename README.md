@@ -1,5 +1,5 @@
 # Ohjelmistotestaus_projekti
- HAMK koulu työ, Ohjelmistotestaus kurssin loppu projekti
+ HAMK koulutyö, Ohjelmistotestaus-kurssin loppuprojekti
 
 
 ## Authors
